@@ -1,40 +1,26 @@
 <?php
 
-	function convertToRank($type, $variables) {
-		$variables_rank = Array();
-		switch ($type) {
-			case 'ratio':
-				$ratio_palier = 0.5;
+	define("RANK_MAX_RATIO", 10);
+	define("RANK_RATIO_LEVEL", 0.6);
+	define("RANK_MAX_TEMPORAL", log(365));
 
-				$max = max($variables);
-				if($max <= 0)
-					$variables_rank = $variables;
+	function convertToRank($type, $variable) {
+		if($type == 'ratio') {
+			$ratio_palier = 0.5;
 
-				foreach ($variables as $variable) {
-					if($variable < 1)
-						array_push($variables_rank, $ratio_palier*$variable);
-					else
-						array_push($variables_rank, (1-$ratio_palier)*$variable/$max+$ratio_palier);
-				}
-				break;
+			if($variable < 0) $variable = 0;
+			if($variable > RANK_MAX_RATIO) $variable = RANK_MAX_RATIO;
 
-			case 'temporal':
-				$temp = Array();
-
-				foreach ($variables as $variable) {
-					array_push($temp, log($variable+1));
-				}
-				$max = max($temp);
-				foreach ($temp as $t) {
-					array_push($variables_rank, 1-$variable/$max);
-				}
-				break;
-			
-			default:
-				echo 'Type '.$type.' isn\'t defined';
-				break;
+			if($variable < 1)
+				return $variable*RANK_RATIO_LEVEL;
+			else
+				return (1-RANK_RATIO_LEVEL)*$variable/RANK_MAX_RATIO+RANK_RATIO_LEVEL;
 		}
-
-		return $variables_rank;
+		else if($type == 'temporal') {
+			return 1-log($variable+1, 2)/RANK_MAX_TEMPORAL;
+		}
+		else {
+			echo 'Type '.$type.' isn\'t defined';
+		}
 	}
 ?>
