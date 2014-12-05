@@ -2,7 +2,8 @@
 
 	define("RANK_MAX_RATIO", 10);
 	define("RANK_RATIO_LEVEL", 0.6);
-	define("RANK_MAX_TEMPORAL", log(365, 2));
+	function RANK_TEMPORAL_F($x) { return log($x*0.2+1, 2); }
+	define("RANK_MAX_TEMPORAL", RANK_TEMPORAL_F(365));
 
 	function convertToRank($type, $variable) {
 		if($type == 'ratio') {
@@ -18,13 +19,19 @@
 		}
 		else if($type == 'temporal') {
 			if($variable < 0) $variable = 0;
-			$variable = log($variable+1, 2);
+			$variable = RANK_TEMPORAL_F($variable);
 			if($variable > RANK_MAX_TEMPORAL) $variable = RANK_MAX_TEMPORAL;
 			return 1-$variable/RANK_MAX_TEMPORAL;
+		}
+		else if($type == 'yesno') {
+			if($variable == 'yes' OR $variable == 'oui')
+				return 1;
+			else
+				return 0;
 		}
 		else {
 			echo 'Type '.$type.' isn\'t defined';
 		}
 	}
-	echo convertToRank('temporal', 1);
+	echo convertToRank('yesno', 'oui');
 ?>
