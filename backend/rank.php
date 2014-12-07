@@ -1,5 +1,7 @@
 <?php
 
+	require_once('db.php');
+
 	define("RANK_MAX_RATIO", 10);
 	define("RANK_RATIO_LEVEL", 0.6);
 	function RANK_NB_F($x, $coeff) { return log($x*$coeff+1, 2); }
@@ -51,4 +53,32 @@
 
 		echo 'Type '.$type.' isn\'t defined';
 	}
+
+	function normalizeCoeffs($variables) {
+		$l = count($variables);
+		$sum_coeffs = 0;
+		for ($i = 0; $i < $l; $i++) {
+			$sum_coeffs += $variables[$i]['coeff'];
+		}
+		for ($i = 0; $i < $l; $i++) {
+			$variables[$i]['coeff'] /= $sum_coeffs;
+		}
+		return $variables;
+	}
+
+	function rank($project, $variables) {
+		// Computing rank
+		$rank = 0;
+		foreach ($variables as $variable) {
+			$rank += $variable['coeff'] * convertToRank($variable['type'], $project['variable_'.$variable['id']]);
+		}
+
+		return $rank;
+	}
+
+	$db = DataBase::getInstance();
+	$projects = $db->query('SELECT * FROM project')->fetchAll();
+	$variables = $db->query('SELECT * FROM variable')->fetchAll();
+	$variables = normalizeCoeffs($variables);
+	echo rank($projects[11], $variables);
 ?>

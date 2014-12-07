@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `projects`
+-- Structure de la table `project`
 --
 
-CREATE TABLE IF NOT EXISTS `projects` (
+CREATE TABLE IF NOT EXISTS `project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `variable_1` double NOT NULL,
@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `projects` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
 
 --
--- Contenu de la table `projects`
+-- Contenu de la table `project`
 --
 
-INSERT INTO `projects` (`id`, `name`, `variable_1`, `variable_2`, `variable_3`, `variable_4`, `variable_5`, `variable_6`, `variable_7`, `variable_8`, `variable_9`, `variable_10`, `variable_11`, `variable_12`, `variable_13`, `variable_14`, `variable_15`, `variable_16`, `variable_17`, `variable_18`, `variable_19`) VALUES
+INSERT INTO `project` (`id`, `name`, `variable_1`, `variable_2`, `variable_3`, `variable_4`, `variable_5`, `variable_6`, `variable_7`, `variable_8`, `variable_9`, `variable_10`, `variable_11`, `variable_12`, `variable_13`, `variable_14`, `variable_15`, `variable_16`, `variable_17`, `variable_18`, `variable_19`) VALUES
 (1, 'darul75/ng-slider', 8, 14, 0.5714285714, 7, 64, 0, 11, 0, 7, 103, 65, 4, 15, 'yes', 8, 40, 26, 4, 7),
 (2, 'danielcrisp/angular-rangeslider', 2, 20, 0.1, 3, 3, 4, 10, 0.4, 59, 180, 64, 3, 159, 'yes', 9, 89, 50, 6, 3),
 (3, 'egorkhmelev/jslider', 77, 9, 8.555555556, 63, 92, 10, 3, 3.333333333, 184, 479, 24, 644, 972, 'no', 3, 501, 197, 0, 0),
@@ -116,10 +116,10 @@ INSERT INTO `projects` (`id`, `name`, `variable_1`, `variable_2`, `variable_3`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `variables`
+-- Structure de la table `variable`
 --
 
-CREATE TABLE IF NOT EXISTS `variables` (
+CREATE TABLE IF NOT EXISTS `variable` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(50) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -129,10 +129,10 @@ CREATE TABLE IF NOT EXISTS `variables` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
--- Contenu de la table `variables`
+-- Contenu de la table `variable`
 --
 
-INSERT INTO `variables` (`id`, `category`, `name`, `coeff`, `type`) VALUES
+INSERT INTO `variable` (`id`, `category`, `name`, `coeff`, `type`) VALUES
 (1, 'Issues', 'number open', 0, 'issues_open'),
 (2, 'Issues', 'number closed', 0, 'issues_closed'),
 (3, 'Issues', 'ratio open/closed', 0.3, 'ratio'),
