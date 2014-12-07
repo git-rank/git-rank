@@ -4,27 +4,27 @@
 
 	define("RANK_MAX_RATIO", 10);
 	define("RANK_RATIO_LEVEL", 0.6);
-	define("RANK_MIN_TEMPORAL", 3);
-	function RANK_NB_F($x, $coeff) { return log($x*$coeff+1, 2); }
+	function RANK_NB_F($x) { return log($x+1, 2); }
 
 	$similar_types = array(
-		// type 			=> [positive/negative, max, coeff]
-		"temporal" 			=> array("negative", 365+RANK_MIN_TEMPORAL, 0.2),
-		"commits" 			=> array("positive", 10000, 0.05),
-		"issues_open" 		=> array("negative", 500, 0.02),
-		"issues_closed" 	=> array("positive", 4000, 0.1),
-		"pr_open" 			=> array("negative", 60, 0.001),
-		"pr_closed" 		=> array("positive", 4000, 0.2),
-		"contributors" 		=> array("positive", 150, 5),
-		"stars" 			=> array("positive", 30000, 0.2),
-		"fork" 				=> array("positive", 5000, 5),
-		"releases" 			=> array("positive", 100, 2),
+		// type 			=> ["positive"/"negative", min, max]
+		"ratio" 			=> array("negative", 0, 10),
+		"temporal" 			=> array("negative", 3, 365),
+		"commits" 			=> array("positive", 0, 10000),
+		"issues_open" 		=> array("negative", 0, 500),
+		"issues_closed" 	=> array("positive", 0, 4000),
+		"pr_open" 			=> array("negative", 0, 60),
+		"pr_closed" 		=> array("positive", 0, 4000),
+		"contributors" 		=> array("positive", 0, 150),
+		"stars" 			=> array("positive", 0, 30000),
+		"fork" 				=> array("positive", 0, 5000),
+		"releases" 			=> array("positive", 0, 100)
 	);
 
 	function convertToRank($type, $variable) {
 		global $similar_types;
 
-		if($type == 'ratio') {
+		/*if($type == 'ratio') {
 			if($variable < 0) $variable = 0;
 			if($variable > RANK_MAX_RATIO) $variable = RANK_MAX_RATIO;
 
@@ -32,8 +32,8 @@
 				return 1-$variable*RANK_RATIO_LEVEL;
 			else
 				return 1-((1-RANK_RATIO_LEVEL)*$variable/RANK_MAX_RATIO+RANK_RATIO_LEVEL);
-		}
-		else if($type == 'yesno') {
+		}*/
+		if($type == 'yesno') {
 			if($variable == 'yes' OR $variable == 'oui')
 				return 1;
 			else
@@ -42,10 +42,9 @@
 
 		foreach ($similar_types as $t => $attr) {
 			if($type == $t) {
-				if($type == 'temporal')
-					$variable -= RANK_MIN_TEMPORAL;
+				$variable -= $attr[1];
 				if($variable < 0) $variable = 0;
-				$variable = RANK_NB_F($variable, $attr[2])/RANK_NB_F($attr[1], $attr[2]);
+				$variable = RANK_NB_F($variable)/RANK_NB_F($attr[2]);
 
 				if($attr[0] == "negative")
 					return $variable >= 1 ? 0 : 1-$variable;
@@ -79,6 +78,7 @@
 		return $rank;
 	}
 
+	
 	$db = DataBase::getInstance();
 	$projects = $db->query('SELECT * FROM project')->fetchAll();
 	$variables = $db->query('SELECT * FROM variable')->fetchAll();
