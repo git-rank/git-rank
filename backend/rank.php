@@ -4,11 +4,12 @@
 
 	define("RANK_MAX_RATIO", 10);
 	define("RANK_RATIO_LEVEL", 0.6);
+	define("RANK_MIN_TEMPORAL", 3);
 	function RANK_NB_F($x, $coeff) { return log($x*$coeff+1, 2); }
 
 	$similar_types = array(
 		// type 			=> [positive/negative, max, coeff]
-		"temporal" 			=> array("negative", 365, 0.2),
+		"temporal" 			=> array("negative", 365+RANK_MIN_TEMPORAL, 0.2),
 		"commits" 			=> array("positive", 10000, 0.05),
 		"issues_open" 		=> array("negative", 500, 0.02),
 		"issues_closed" 	=> array("positive", 4000, 0.1),
@@ -41,6 +42,8 @@
 
 		foreach ($similar_types as $t => $attr) {
 			if($type == $t) {
+				if($type == 'temporal')
+					$variable -= RANK_MIN_TEMPORAL;
 				if($variable < 0) $variable = 0;
 				$variable = RANK_NB_F($variable, $attr[2])/RANK_NB_F($attr[1], $attr[2]);
 
@@ -80,5 +83,8 @@
 	$projects = $db->query('SELECT * FROM project')->fetchAll();
 	$variables = $db->query('SELECT * FROM variable')->fetchAll();
 	$variables = normalizeCoeffs($variables);
-	echo rank($projects[11], $variables);
+	foreach ($projects as $project) {
+		$rank = rank($project, $variables);
+		echo $project['name'].' : '.$rank.'<br/>';
+	}
 ?>
