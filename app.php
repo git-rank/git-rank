@@ -31,6 +31,7 @@
 	<link rel="stylesheet" type="text/css" href="app.css" >
 </head>
 <body>
+	<div id="loading" ><h1>Loading...</h1></div>
 	<section id="logo" >
 		<svg id="logo_svg" viewbox="0 0 210 100" >
 			<circle cx="150" cy="50" r="38" stroke="#ccc" stroke-width="1" fill="none" />
@@ -49,7 +50,7 @@
 	</section>
 	<section id="projects" >
 		<h1>Projects</h1>
-		<p style="text-align:center;margin-top:20%;font-size:72px;">Please choose any project</p>
+		<p id="choose_project" style="">Please choose any project</p>
 	</section>
 
 	<script src="jquery-2.1.1.min.js"></script>
