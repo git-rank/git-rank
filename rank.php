@@ -50,9 +50,18 @@
 	foreach ($types as $t) {
 		$types[$t['name']] = $t;
 	}
-	/*
-	foreach ($projects as $project) {
-		$rank = rank($project, $variables, $types);
-		//echo $project['name'].','.$rank.'<br/>';
+	
+	// Ranking
+	for ($i = 0; $i < count($projects); $i++) {
+		$projects[$i]['rank'] = rank($projects[$i], $variables, $types);
+	}
+	// Sorting
+	function cmp_project($a, $b) {
+		return ($a['rank'] < $b['rank']) ? 1 : -1;
+	}
+	usort($projects, 'cmp_project');
+
+	/*foreach ($projects as $project) {
+		echo $project['name'].','.$project['rank'].'<br/>';
 	}*/
 ?>

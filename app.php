@@ -2,6 +2,7 @@
 	include_once('rank.php');
 
 	function circularDisplay($value, $text) {
+		$value *= 10;
 		$a = pi()*(5/2-2*$value/10);
 		$x = 50+cos($a)*38;
 		$y = 50-sin($a)*38;
@@ -51,26 +52,6 @@
 	</section>
 
 	<script src="jquery-2.1.1.min.js"></script>
-	<script>
-		function positionLogo() {
-			if($('#logo').height()*2.1 < $('#logo').width()) {
-				$('#logo_svg').css({
-					'top': 0,
-					'left': ($('#logo').width()-$('#logo_svg').width())/2
-				});
-			}
-			else {
-				$('#logo_svg').css({
-					'top': ($('#logo').height()-$('#logo_svg').height())/2,
-					'left': 0
-				});
-			}
-		}
-		positionLogo();
-
-		$(window).on('resize', function() {
-			positionLogo();
-		});
-	</script>
+	<script src="app.js"></script>
 </body>
 </html>
