@@ -18,14 +18,15 @@ section {
 	-webkit-box-sizing:border-box;
 }
 h1,h2,h3,h4,h5,h6,p {
-	font-family: "Century Gothic";;
+	font-family: "Century Gothic";
 	font-weight: normal;
 	color: #4ea3b1;
 }
+
 section h1 {
 	text-align: center;
 	font-size: 36px;
-	margin-top: 15px;
+	font-size: 3vw;
 }
 
 #logo {
@@ -55,10 +56,15 @@ section h2 {
 	border-right: 5px solid #4ea3b1;
 	overflow: auto;
 }
-
+#ranking h1 {
+	margin-top: 5%;
+}
 #projects {
 	width: 70%;
 	height: 100%;
 	top: 0;
 	left: 30%;
+}
+#projects h1 {
+	margin-top: 2%;
 }

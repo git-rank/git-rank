@@ -14,10 +14,11 @@
 			$value = "10.0";
 
 		return
-		'<svg width="100%" viewbox="0 0 500 100" >
+		'
+		<svg width="100%" viewbox="0 0 500 100" >
 			<circle cx="50" cy="50" r="38" stroke="#ccc" stroke-width="1" fill="none" />
 			<path d="M 50 12 A 38 38 0 '.$large.' 1 '.$x.' '.$y.'" stroke="#4ea3b1" stroke-width="2" fill="none" />
-			<text x="24" y="59" font-size="30" fill="#4ea3b1" >'.$value.'</text>
+			<text x="50" y="59" text-anchor="middle" font-size="28" fill="#4ea3b1" >'.$value.'</text>
 			<text x="100" y="59" font-size="30" fill="#4ea3b1" >'.$text.'</text>
 		</svg>';
 	}
