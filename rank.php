@@ -46,13 +46,13 @@
 	$projects = $db->query('SELECT * FROM project')->fetchAll();
 	$variables = $db->query('SELECT * FROM variable')->fetchAll();
 	$types = $db->query('SELECT * FROM type')->fetchAll();
+	$variables = normalizeCoeffs($variables);
 	foreach ($types as $t) {
 		$types[$t['name']] = $t;
 	}
-
-	$variables = normalizeCoeffs($variables);
+	/*
 	foreach ($projects as $project) {
 		$rank = rank($project, $variables, $types);
-		echo $project['name'].','.$rank.'<br/>';
-	}
+		//echo $project['name'].','.$rank.'<br/>';
+	}*/
 ?>
