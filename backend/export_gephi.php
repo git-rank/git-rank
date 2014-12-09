@@ -46,13 +46,28 @@
 	$projects = $db->query('SELECT * FROM project')->fetchAll();
 	$variables = $db->query('SELECT * FROM variable')->fetchAll();
 	$types = $db->query('SELECT * FROM type')->fetchAll();
+	$variables = normalizeCoeffs($variables);
 	foreach ($types as $t) {
 		$types[$t['name']] = $t;
 	}
 
-	$variables = normalizeCoeffs($variables);
+	$n_p = count($projects);
+	//$n_v = count($variables);
+/*
+	echo 'id,node,type<br/>';
 	foreach ($projects as $project) {
-		$rank = rank($project, $variables, $types);
-		echo $project['name'].','.$rank.'<br/>';
+		echo $project['id'].','.$project['name'].',project<br/>';
+	}
+	foreach ($variables as $variable) {
+		$variable['id'] += $n_p;
+		echo $variable['id'].','.$variable['category'].' - '.$variable['name'].',variable<br/>';
+	}
+*/
+	echo 'source,target,weight,type<br />';
+	foreach ($projects as $project) {
+		foreach ($variables as $variable) {
+			echo ($variable['id']+$n_p).','.$project['id'].','.
+			convertToRank($variable['type'], $project['variable_'.$variable['id']], $types).',undirected<br/>';
+		}
 	}
 ?>
