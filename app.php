@@ -34,6 +34,8 @@
 
 		$path = '';
 		$text_labels = '';
+		$path_value = '';
+		$point_value = '';
 		for($i = 0; $i < $n; $i++) {
 			$angle = $off_a+$i*$a;
 			$x = $cx + cos($angle)*$rayon;
@@ -51,14 +53,25 @@
 			$text_labels .= '
 			<text x="'.($x+cos($angle)*5).'" y="'.($y+$font_size*(+sin($angle)+0.5)/1.5).'" text-anchor="'.$anchor.'"
 			font-size="'.$font_size.'" fill="#046380" >'.$labels[$i].$i.'</text>';
+
+
+			$x = $cx + cos($angle)*$rayon*$values[$i];
+			$y = $cy + sin($angle)*$rayon*$values[$i];
+			if($i == 0)
+				$path_value .= 'M '.$x.' '.$y.' ';
+			else
+				$path_value .= 'L '.$x.' '.$y.' ';
+			$point_value .= '<circle cx="'.$x.'" cy="'.$y.'" r="1.5" fill="#046380" />';
 		}
 		$path .= 'Z';
+		$path_value .= 'Z';
 
 		return
 		'
 		<svg width="300" viewbox="0 0 '.$w.' '.$h.'" >
 			<path d="'.$path.'" stroke="#ccc" stroke-width="1" fill="none" />
-			'.$text_labels.'
+			<path d="'.$path_value.'" stroke="#046380" stroke-width="1" fill="none" />
+			'.$text_labels.$point_value.'
 		</svg>';
 	}
 ?>
