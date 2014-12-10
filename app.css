@@ -55,6 +55,7 @@ section {
 		margin-left: -140px;
 	}
 #logo {
+	background-color: #046380;
 }
 	#logo svg {
 		position: absolute;
@@ -77,7 +78,7 @@ section {
 	}
 	.ranking_project:hover {
 		cursor: pointer;
-		background-color: #002F2F;
+		background-color: #046380;
 	}
 
 #projects {

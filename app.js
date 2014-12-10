@@ -1,5 +1,7 @@
 (function() {
 	"use strict";
+
+	// Resize
 	function sizeLogo() {
 		var container = $('#logo');
 		var logo = $('#logo_svg');
@@ -35,8 +37,6 @@
 				'top': '0%',
 				'left': '0%',
 				'border': 'none',
-				'border-bottom': '2px solid #046380',
-				'border-right': '2px solid #046380'
 			});
 			$('#ranking').css({
 				'width': '30%',
@@ -56,16 +56,15 @@
 		else {
 			$('#logo').css({
 				'width': '40%',
-				'height': '25%',
+				'height': '40%',
 				'top': '0%',
 				'left': '0%',
 				'border': 'none',
 				'border-bottom': '2px solid #046380',
-				'border-right': '2px solid #046380'
 			});
 			$('#ranking').css({
 				'width': '60%',
-				'height': '25%',
+				'height': '40%',
 				'top': '0%',
 				'left': '40%',
 				'border': 'none',
@@ -73,8 +72,8 @@
 			});
 			$('#projects').css({
 				'width': '100%',
-				'height': '75%',
-				'top': '25%',
+				'height': '60%',
+				'top': '40%',
 				'left': '0%'
 			});
 		}
@@ -84,9 +83,9 @@
 		sizeLogo();
 	}
 	onResize();
-
 	$(window).on('resize', onResize);
 
+	// Loader
 	function loading() {
 		$('#loading').show();
 	}
@@ -94,4 +93,14 @@
 		$('#loading').fadeOut('slow');
 	}
 	unloading();
+
+	// Hover
+	$('.ranking_project').mouseover(function(e){
+		$(this).find('text').attr('fill', '#fff');
+		$(this).find('path').attr('stroke', '#fff');
+	});
+	$('.ranking_project').mouseout(function(e){
+		$(this).find('text').attr('fill', '#046380');
+		$(this).find('path').attr('stroke', '#046380');
+	});
 })();

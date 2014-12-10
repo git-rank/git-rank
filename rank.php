@@ -34,11 +34,36 @@
 	function rank($project, $variables, $types) {
 		// Computing rank
 		$rank = 0;
+		$sum_coeffs = 0;
 		foreach ($variables as $variable) {
+			$sum_coeffs += $variable['coeff'];
 			$rank += $variable['coeff'] * convertToRank($variable['type'], $project['variable_'.$variable['id']], $types);
 		}
 
-		return $rank;
+		return $rank/$sum_coeffs;
+	}
+
+	function subrank($project, $variables, $types) {
+		// Computing rank
+		$subrank = [];
+		$sum_coeffs = [];
+		foreach ($variables as $variable) {
+			if(!isset($subrank[$variable['category']])) {
+				$subrank[$variable['category']] = 0;
+				$sum_coeffs[$variable['category']] = 0;
+			}
+			$subrank[$variable['category']] += $variable['coeff'] * convertToRank($variable['type'], $project['variable_'.$variable['id']], $types);
+			$sum_coeffs[$variable['category']] += $variable['coeff'];
+		}
+
+		foreach ($subrank as $key => $sub) {
+			if($sum_coeffs[$key] == 0)
+				$subrank[$key] = 1;
+			else
+				$subrank[$key] = $sub / $sum_coeffs[$key];
+		}
+
+		return $subrank;
 	}
 
 	
@@ -46,7 +71,6 @@
 	$projects = $db->query('SELECT * FROM project')->fetchAll();
 	$variables = $db->query('SELECT * FROM variable')->fetchAll();
 	$types = $db->query('SELECT * FROM type')->fetchAll();
-	$variables = normalizeCoeffs($variables);
 	foreach ($types as $t) {
 		$types[$t['name']] = $t;
 	}
@@ -54,6 +78,7 @@
 	// Ranking
 	for ($i = 0; $i < count($projects); $i++) {
 		$projects[$i]['rank'] = rank($projects[$i], $variables, $types);
+		$projects[$i]['subrank'] = subrank($projects[$i], $variables, $types);
 	}
 	// Sorting
 	function cmp_project($a, $b) {
@@ -61,7 +86,13 @@
 	}
 	usort($projects, 'cmp_project');
 
-	/*foreach ($projects as $project) {
-		echo $project['name'].','.$project['rank'].'<br/>';
-	}*/
+	/*
+	foreach ($projects as $project) {
+		echo $project['name'].' : '.$project['rank'].'<br/>';
+		foreach ($project['subrank'] as $s => $p) {
+			echo '- '.$s.' : '.$p.'<br />';
+		}
+		echo '<br/>';
+	}
+	*/
 ?>

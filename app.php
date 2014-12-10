@@ -35,8 +35,8 @@
 	<section id="logo" >
 		<svg id="logo_svg" viewbox="0 0 210 100" >
 			<circle cx="150" cy="50" r="38" stroke="#aaa" stroke-width="1" fill="none" />
-			<path d="M 150 12 A 38 38 0 1 1 123 77" stroke="#046380" stroke-width="2" fill="none" />
-			<text x="21" y="60" font-size="40" fill="#046380" >GitRank</text>
+			<path d="M 150 12 A 38 38 0 1 1 123 77" stroke="#fff" stroke-width="2" fill="none" />
+			<text x="21" y="60" font-size="40" fill="#fff" >GitRank</text>
 		</svg>
 	</section>
 	<section id="ranking" >
