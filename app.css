@@ -1,7 +1,7 @@
 /*
 	#E6E2AF
 	#A7A37E
-	#EFECCA background
+	#ecf0f1 background
 	#046380 text
 	#002F2F selected
 */
@@ -14,7 +14,7 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	background: #EFECCA;
+	background: #ecf0f1;
 }
 
 h1,h2,h3,h4,h5,h6,p {
