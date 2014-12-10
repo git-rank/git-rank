@@ -22,6 +22,45 @@
 			<text x="100" y="59" font-size="30" fill="#046380" >'.$text.'</text>
 		</svg>';
 	}
+	function radarGraph($labels, $values) {
+		$n = count($values);
+		$a = 2*pi()/$n;
+		$off_a = -pi()/2;
+
+		$rayon = 40;
+		$w = 200; $h = 100;
+		$cx = $w/2; $cy = $h/2;
+		$font_size = 10;
+
+		$path = '';
+		$text_labels = '';
+		for($i = 0; $i < $n; $i++) {
+			$angle = $off_a+$i*$a;
+			$x = $cx + cos($angle)*$rayon;
+			$y = $cy + sin($angle)*$rayon;
+			if($i == 0)
+				$path .= 'M '.$x.' '.$y.' ';
+			else
+				$path .= 'L '.$x.' '.$y.' ';
+			$path .= 'L '.$cx.' '.$cy.' ';
+			$path .= 'L '.$x.' '.$y.' ';
+
+			if($angle > -pi()/3 AND $angle < pi()/3) $anchor = 'start';
+			else if($angle > 2*pi()/3 AND $angle < 5*pi()/3) $anchor = 'end';
+			else $anchor = 'middle';
+			$text_labels .= '
+			<text x="'.($x+cos($angle)*5).'" y="'.($y+$font_size*(+sin($angle)+0.5)/1.5).'" text-anchor="'.$anchor.'"
+			font-size="'.$font_size.'" fill="#046380" >'.$labels[$i].$i.'</text>';
+		}
+		$path .= 'Z';
+
+		return
+		'
+		<svg width="300" viewbox="0 0 '.$w.' '.$h.'" >
+			<path d="'.$path.'" stroke="#ccc" stroke-width="1" fill="none" />
+			'.$text_labels.'
+		</svg>';
+	}
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +68,7 @@
 <head>
 	<title>Git-Rank</title>
 	<link rel="stylesheet" type="text/css" href="app.css" >
+	<link rel='stylesheet' href='Nwagon.css' type='text/css'>
 </head>
 <body>
 	<div id="loading" ><h1>Loading...</h1></div>
@@ -51,9 +91,13 @@
 	<section id="projects" >
 		<h1>Projects</h1>
 		<p id="choose_project" style="">Please choose any project</p>
+		<?= radarGraph(["testtest","testtest","testtest","testtest","testtest",],[0.2,0.5,0.5,0.9,0.2]) ?>
 	</section>
 
 	<script src="jquery-2.1.1.min.js"></script>
 	<script src="app.js"></script>
+	<script>
+
+	</script>
 </body>
 </html>
