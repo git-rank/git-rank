@@ -15,11 +15,11 @@
 
 		return
 		'
-		<svg width="100%" viewbox="0 0 500 100" >
-			<circle cx="50" cy="50" r="38" stroke="#ccc" stroke-width="1" fill="none" />
-			<path d="M 50 12 A 38 38 0 '.$large.' 1 '.$x.' '.$y.'" stroke="#4ea3b1" stroke-width="2" fill="none" />
-			<text x="50" y="59" text-anchor="middle" font-size="28" fill="#4ea3b1" >'.$value.'</text>
-			<text x="100" y="59" font-size="30" fill="#4ea3b1" >'.$text.'</text>
+		<svg viewbox="0 0 500 100" >
+			<circle cx="50" cy="50" r="38" stroke="#aaa" stroke-width="1" fill="none" />
+			<path d="M 50 12 A 38 38 0 '.$large.' 1 '.$x.' '.$y.'" stroke="#046380" stroke-width="2" fill="none" />
+			<text x="50" y="59" text-anchor="middle" font-size="28" fill="#046380" >'.$value.'</text>
+			<text x="100" y="59" font-size="30" fill="#046380" >'.$text.'</text>
 		</svg>';
 	}
 ?>
@@ -34,9 +34,9 @@
 	<div id="loading" ><h1>Loading...</h1></div>
 	<section id="logo" >
 		<svg id="logo_svg" viewbox="0 0 210 100" >
-			<circle cx="150" cy="50" r="38" stroke="#ccc" stroke-width="1" fill="none" />
-			<path d="M 150 12 A 38 38 0 1 1 123 77" stroke="#4ea3b1" stroke-width="2" fill="none" />
-			<text x="21" y="60" font-size="40" fill="#4ea3b1" >GitRank</text>
+			<circle cx="150" cy="50" r="38" stroke="#aaa" stroke-width="1" fill="none" />
+			<path d="M 150 12 A 38 38 0 1 1 123 77" stroke="#046380" stroke-width="2" fill="none" />
+			<text x="21" y="60" font-size="40" fill="#046380" >GitRank</text>
 		</svg>
 	</section>
 	<section id="ranking" >

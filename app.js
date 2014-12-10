@@ -35,8 +35,8 @@
 				'top': '0%',
 				'left': '0%',
 				'border': 'none',
-				'border-bottom': '5px solid #4ea3b1',
-				'border-right': '5px solid #4ea3b1'
+				'border-bottom': '2px solid #046380',
+				'border-right': '2px solid #046380'
 			});
 			$('#ranking').css({
 				'width': '30%',
@@ -44,7 +44,7 @@
 				'top': '20%',
 				'left': '0%',
 				'border': 'none',
-				'border-right': '5px solid #4ea3b1'
+				'border-right': '2px solid #046380'
 			});
 			$('#projects').css({
 				'width': '70%',
@@ -60,8 +60,8 @@
 				'top': '0%',
 				'left': '0%',
 				'border': 'none',
-				'border-bottom': '5px solid #4ea3b1',
-				'border-right': '5px solid #4ea3b1'
+				'border-bottom': '2px solid #046380',
+				'border-right': '2px solid #046380'
 			});
 			$('#ranking').css({
 				'width': '60%',
@@ -69,7 +69,7 @@
 				'top': '0%',
 				'left': '40%',
 				'border': 'none',
-				'border-bottom': '5px solid #4ea3b1'
+				'border-bottom': '2px solid #046380'
 			});
 			$('#projects').css({
 				'width': '100%',

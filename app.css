@@ -1,3 +1,10 @@
+/*
+	#E6E2AF
+	#A7A37E
+	#EFECCA background
+	#046380 text
+	#002F2F selected
+*/
 * {
 	margin: inherit;
 	padding: inherit;
@@ -7,13 +14,13 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	background: #eef;
+	background: #EFECCA;
 }
 
 h1,h2,h3,h4,h5,h6,p {
 	font-family: "Century Gothic";
 	font-weight: normal;
-	color: #4ea3b1;
+	color: #046380;
 }
 
 section {
@@ -57,11 +64,20 @@ section {
 	}
 
 #ranking {
-	border-right: 5px solid #4ea3b1;
+	border-right: 5px solid #046380;
 	overflow: auto;
 }
 	#ranking h1 {
 		margin-top: 5%;
+		margin-bottom: 5%;
+	}
+	.ranking_project {
+		width: 100%;
+		padding-top: 2px;
+	}
+	.ranking_project:hover {
+		cursor: pointer;
+		background-color: #002F2F;
 	}
 
 #projects {
@@ -69,10 +85,11 @@ section {
 }
 	#projects h1 {
 		margin-top: 2%;
+		margin-bottom: 2%;
 	}
 	#choose_project {
 		text-align:center;
 		font-size: 72px;
 		font-size: 10vh;
-		line-height: 70vh;
+		margin-top: 10vh;
 	}
