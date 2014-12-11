@@ -94,3 +94,15 @@ section {
 		font-size: 10vh;
 		margin-top: 10vh;
 	}
+	#projects .details {
+		width: 100%;
+	}
+	#projects hr {
+		width: 80%;
+		margin: 2% 0 2% 10%;
+		height: 1px;
+		padding: 0;
+		color: #046380;
+		background-color: #046380;
+		border: 0;
+	}

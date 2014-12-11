@@ -22,21 +22,23 @@
 			<text x="100" y="59" font-size="30" fill="#046380" >'.$text.'</text>
 		</svg>';
 	}
-	function radarGraph($labels, $values) {
+	function radarGraph($title, $labels, $values) {
 		$n = count($values);
 		$a = 2*pi()/$n;
 		$off_a = -pi()/2;
 
 		$rayon = 40;
-		$w = 200; $h = 100;
-		$cx = $w/2; $cy = $h/2;
+		$w = 420; $h = 100;
+		$cx = ($w-200)/2+200; $cy = $h/2;
 		$font_size = 10;
 
 		$path = '';
 		$text_labels = '';
 		$path_value = '';
 		$point_value = '';
+		$text_values = '';
 		for($i = 0; $i < $n; $i++) {
+			// Path background
 			$angle = $off_a+$i*$a;
 			$x = $cx + cos($angle)*$rayon;
 			$y = $cy + sin($angle)*$rayon;
@@ -47,14 +49,15 @@
 			$path .= 'L '.$cx.' '.$cy.' ';
 			$path .= 'L '.$x.' '.$y.' ';
 
+			// Labels
 			if($angle > -pi()/3 AND $angle < pi()/3) $anchor = 'start';
 			else if($angle > 2*pi()/3 AND $angle < 5*pi()/3) $anchor = 'end';
 			else $anchor = 'middle';
 			$text_labels .= '
 			<text x="'.($x+cos($angle)*5).'" y="'.($y+$font_size*(+sin($angle)+0.5)/1.5).'" text-anchor="'.$anchor.'"
-			font-size="'.$font_size.'" fill="#046380" >'.$labels[$i].$i.'</text>';
+			font-size="'.$font_size.'" fill="#046380" >'.$labels[$i].'</text>';
 
-
+			// Path data
 			$x = $cx + cos($angle)*$rayon*$values[$i];
 			$y = $cy + sin($angle)*$rayon*$values[$i];
 			if($i == 0)
@@ -62,16 +65,25 @@
 			else
 				$path_value .= 'L '.$x.' '.$y.' ';
 			$point_value .= '<circle cx="'.$x.'" cy="'.$y.'" r="1.5" fill="#046380" />';
+
+			// Values on the left
+			$text_values .='
+			<text x="20" y="'.(20+$i*10).'" font-size="8" fill="#046380" text-anchor="start" >'.
+				$labels[$i].' : '.$values[$i]
+			.'</text>';
 		}
 		$path .= 'Z';
 		$path_value .= 'Z';
 
 		return
 		'
-		<svg width="300" viewbox="0 0 '.$w.' '.$h.'" >
+		<svg class="radar_graph" viewbox="0 0 '.$w.' '.$h.'" >
+			<text x="100" y="10" font-size="10" fill="#046380" text-anchor="middle" >'.$title.'</text>
+			'.$text_values.'
 			<path d="'.$path.'" stroke="#ccc" stroke-width="1" fill="none" />
 			<path d="'.$path_value.'" stroke="#046380" stroke-width="1" fill="none" />
 			'.$text_labels.$point_value.'
+			<path d="M 1 1 H 420 V 100 H -420 Z" stroke="#c00" stroke-width="1" fill="none" />
 		</svg>';
 	}
 ?>
@@ -103,8 +115,11 @@
 	</section>
 	<section id="projects" >
 		<h1>Projects</h1>
-		<p id="choose_project" style="">Please choose any project</p>
-		<?= radarGraph(["testtest","testtest","testtest","testtest","testtest",],[0.2,0.5,0.5,0.9,0.2]) ?>
+		<!-- <p id="choose_project" style="">Please choose any project</p> -->
+		<div>
+			<hr />
+			<?= radarGraph("Title", ["Issues","Pull Requests","Commits","Others"],[0.2,0.5,0.5,0.9]) ?>
+		</div>
 	</section>
 
 	<script src="jquery-2.1.1.min.js"></script>
