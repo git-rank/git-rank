@@ -83,7 +83,6 @@
 			<path d="'.$path.'" stroke="#ccc" stroke-width="1" fill="none" />
 			<path d="'.$path_value.'" stroke="#046380" stroke-width="1" fill="none" />
 			'.$text_labels.$point_value.'
-			<path d="M 1 1 H 420 V 100 H -420 Z" stroke="#c00" stroke-width="1" fill="none" />
 		</svg>';
 	}
 ?>
