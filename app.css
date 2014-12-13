@@ -78,7 +78,6 @@ section {
 	}
 	.ranking_project:hover {
 		cursor: pointer;
-		background-color: #046380;
 	}
 
 #projects {
@@ -94,8 +93,9 @@ section {
 		font-size: 10vh;
 		margin-top: 10vh;
 	}
-	#projects .details {
+	#projects .project_details {
 		width: 100%;
+		display: none;
 	}
 	#projects hr {
 		width: 80%;

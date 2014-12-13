@@ -94,13 +94,38 @@
 	}
 	unloading();
 
-	// Hover
-	$('.ranking_project').mouseover(function(e){
-		$(this).find('text').attr('fill', '#fff');
-		$(this).find('path').attr('stroke', '#fff');
+	// Hover projects
+	function setProjectColor(project) {
+		if(project.attr('project_clicked') == 'no') {
+			project.find('text').attr('fill', '#046380');
+			project.find('path').attr('stroke', '#046380');
+			project.css('background-color', '#ecf0f1');
+		}
+	}
+	function setProjectColorHover(project) {
+		if(project.attr('project_clicked') == 'no') {
+			project.find('text').attr('fill', '#fff');
+			project.find('path').attr('stroke', '#fff');
+			project.css('background-color', '#046380');
+		}
+	}
+	function toggleClickProject(project) {
+		if(project.attr('project_clicked') == 'no') {
+			project.attr('project_clicked', 'yes');
+		}
+		else {
+			project.attr('project_clicked', 'no');
+		}
+	}
+	$('.ranking_project').mouseleave(function(e){
+		setProjectColor($(this));
 	});
-	$('.ranking_project').mouseout(function(e){
-		$(this).find('text').attr('fill', '#046380');
-		$(this).find('path').attr('stroke', '#046380');
+	$('.ranking_project').mouseenter(function(e){
+		setProjectColorHover($(this));
+	});
+	$('.ranking_project').click(function(e){
+		toggleClickProject($(this));
+		setProjectColorHover($(this));
+		$('#project_details_'+$(this).attr('project_id')).toggle('slow');
 	});
 })();

@@ -1,17 +1,23 @@
 <?php
 	include_once('rank.php');
 
-	function circularDisplay($value, $text) {
+	function displayValue($value) {
 		$value *= 10;
-		$a = pi()*(5/2-2*$value/10);
-		$x = 50+cos($a)*38;
-		$y = 50-sin($a)*38;
-		$large = ($value > 5) ? 1 : 0;
 
 		if ($value < 10)
 			$value = sprintf('%.2f',round($value, 2));
 		else
 			$value = "10.0";
+
+		return $value;
+	}
+	function circularDisplay($value, $text) {
+		$a = pi()*(5/2-2*$value);
+		$x = 50+cos($a)*38;
+		$y = 50-sin($a)*38;
+		$large = ($value > 0.5) ? 1 : 0;
+
+		$value = displayValue($value);
 
 		return
 		'
@@ -68,8 +74,8 @@
 
 			// Values on the left
 			$text_values .='
-			<text x="20" y="'.(20+$i*10).'" font-size="8" fill="#046380" text-anchor="start" >'.
-				$labels[$i].' : '.$values[$i]
+			<text x="20" y="'.(25+$i*10).'" font-size="8" fill="#046380" text-anchor="start" >'.
+				$labels[$i].' : '.displayValue($values[$i])
 			.'</text>';
 		}
 		$path .= 'Z';
@@ -92,7 +98,6 @@
 <head>
 	<title>Git-Rank</title>
 	<link rel="stylesheet" type="text/css" href="app.css" >
-	<link rel='stylesheet' href='Nwagon.css' type='text/css'>
 </head>
 <body>
 	<div id="loading" ><h1>Loading...</h1></div>
@@ -108,17 +113,28 @@
 		<?php
 			foreach ($projects as $project) {
 				$rank = rank($project, $variables, $types);
-				echo '<div class="ranking_project">'.circularDisplay($rank, $project['name']).'</div>';
+				echo '<div class="ranking_project" project_id="'.$project['id'].'" project_clicked="no" >'.
+					circularDisplay($rank, $project['name'])
+				.'</div>';
 			}
 		?>
 	</section>
 	<section id="projects" >
 		<h1>Projects</h1>
 		<!-- <p id="choose_project" style="">Please choose any project</p> -->
-		<div>
-			<hr />
-			<?= radarGraph("Title", ["Issues","Pull Requests","Commits","Others"],[0.2,0.5,0.5,0.9]) ?>
-		</div>
+		<?php
+			foreach ($projects as $project) {
+				$title =  $project['name'];
+				$labels = array();
+				$values = array();
+				foreach ($project['subrank'] as $label => $value) {
+					array_push($labels, $label);
+					array_push($values, $value);
+				}
+				echo '<div id="project_details_'.$project['id'].'" class="project_details" >';
+				echo radarGraph($title, $labels, $values) .'<hr /></div>';
+			}
+		?>
 	</section>
 
 	<script src="jquery-2.1.1.min.js"></script>
