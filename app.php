@@ -121,7 +121,7 @@
 	</section>
 	<section id="projects" >
 		<h1>Projects</h1>
-		<!-- <p id="choose_project" style="">Please choose any project</p> -->
+		<p id="choose_project" style="">Please choose any project</p>
 		<?php
 			foreach ($projects as $project) {
 				$title =  $project['name'];

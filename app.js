@@ -95,6 +95,7 @@
 	unloading();
 
 	// Hover projects
+	var nb_projects_showed = 0;
 	function setProjectColor(project) {
 		if(project.attr('project_clicked') == 'no') {
 			project.find('text').attr('fill', '#046380');
@@ -112,9 +113,17 @@
 	function toggleClickProject(project) {
 		if(project.attr('project_clicked') == 'no') {
 			project.attr('project_clicked', 'yes');
+			nb_projects_showed++;
+			if(nb_projects_showed == 1) {
+				$('#choose_project').hide();
+			}
 		}
 		else {
 			project.attr('project_clicked', 'no');
+			nb_projects_showed--;
+			if(nb_projects_showed == 0) {
+				$('#choose_project').show('slow');
+			}
 		}
 	}
 	$('.ranking_project').mouseleave(function(e){
