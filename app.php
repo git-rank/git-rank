@@ -7,6 +7,7 @@
 <head>
 	<title>Git-Rank</title>
 	<link rel="stylesheet" type="text/css" href="app.css" >
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div id="loading" ><h1>Loading...</h1></div>

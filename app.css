@@ -17,8 +17,8 @@ body {
 	background: #ecf0f1;
 }
 
-h1,h2,h3,h4,h5,h6,p {
-	font-family: "Century Gothic";
+h1,h2,h3,h4,h5,h6,p,svg {
+	font-family: 'Open Sans', sans-serif;
 	font-weight: normal;
 	color: #046380;
 }
