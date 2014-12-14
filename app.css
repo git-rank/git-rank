@@ -101,6 +101,7 @@ section {
 	#projects h1 {
 		margin-top: 2%;
 		margin-bottom: 2%;
+		display: none;
 	}
 	#choose_project {
 		text-align:center;
@@ -120,4 +121,7 @@ section {
 		color: #046380;
 		background-color: #046380;
 		border: 0;
+	}
+	#projects .remove_project {
+		cursor: pointer;
 	}

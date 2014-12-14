@@ -63,6 +63,7 @@
 			nb_projects_showed++;
 			if(nb_projects_showed == 1) {
 				$('#choose_project').hide();
+				$('#projects h1').show('slow');
 			}
 		}
 		else {
@@ -70,6 +71,7 @@
 			nb_projects_showed--;
 			if(nb_projects_showed == 0) {
 				$('#choose_project').show('slow');
+				$('#projects h1').hide('slow');
 			}
 		}
 	}
@@ -84,4 +86,10 @@
 		setProjectColorHover($(this));
 		$('#project_details_'+$(this).attr('project_id')).toggle('slow');
 	});
+	$('.remove_project').click(function(e){
+		var project;
+		toggleClickProject($(this));
+		setProjectColorHover($(this));
+		$('#project_details_'+$(this).attr('project_id')).toggle('slow');
+	})
 })();
