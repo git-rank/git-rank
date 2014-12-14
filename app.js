@@ -26,60 +26,7 @@
 			});
 		}
 	}
-	function sizeInterface() {
-		var w = $(window).width();
-		var h = $(window).height();
-
-		if(w > h) {
-			$('#logo').css({
-				'width': '30%',
-				'height': '20%',
-				'top': '0%',
-				'left': '0%',
-				'border': 'none',
-			});
-			$('#ranking').css({
-				'width': '30%',
-				'height': '80%',
-				'top': '20%',
-				'left': '0%',
-				'border': 'none',
-				'border-right': '2px solid #046380'
-			});
-			$('#projects').css({
-				'width': '70%',
-				'height': '100%',
-				'top': '0%',
-				'left': '30%'
-			});
-		}
-		else {
-			$('#logo').css({
-				'width': '40%',
-				'height': '40%',
-				'top': '0%',
-				'left': '0%',
-				'border': 'none',
-				'border-bottom': '2px solid #046380',
-			});
-			$('#ranking').css({
-				'width': '60%',
-				'height': '40%',
-				'top': '0%',
-				'left': '40%',
-				'border': 'none',
-				'border-bottom': '2px solid #046380'
-			});
-			$('#projects').css({
-				'width': '100%',
-				'height': '60%',
-				'top': '40%',
-				'left': '0%'
-			});
-		}
-	}
 	function onResize() {
-		sizeInterface();
 		sizeLogo();
 	}
 	onResize();
