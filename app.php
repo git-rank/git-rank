@@ -20,37 +20,15 @@
 	</section>
 	<section id="ranking" >
 		<h1>Ranking</h1>
-		<?php
-			foreach ($projects as $project) {
-				$rank = rank($project, $variables, $types);
-				echo '<div class="ranking_project" project_id="'.$project['id'].'" project_clicked="no" >'.
-					circularDisplay($rank, $project['name'])
-				.'</div>';
-			}
-		?>
+		<div id="ranking_content"></div>
 	</section>
 	<section id="projects" >
 		<h1>Projects</h1>
 		<p id="choose_project" style="">Please choose any project</p>
-		<?php
-			foreach ($projects as $project) {
-				$title =  $project['name'];
-				$labels = array();
-				$values = array();
-				foreach ($project['subrank'] as $label => $value) {
-					array_push($labels, $label);
-					array_push($values, $value);
-				}
-				echo '<div id="project_details_'.$project['id'].'" class="project_details" >';
-				echo radarGraph($title, $labels, $values) .'<hr /></div>';
-			}
-		?>
+		<div id="projects_content"></div>
 	</section>
 
 	<script src="jquery-2.1.1.min.js"></script>
 	<script src="app.js"></script>
-	<script>
-
-	</script>
 </body>
 </html>

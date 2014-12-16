@@ -1,7 +1,5 @@
 <?php
 
-	require_once('db.php');
-
 	function RANK_NB_F($x) {
 		return log($x+1, 2);
 	}
@@ -65,26 +63,6 @@
 
 		return $subrank;
 	}
-
-	
-	$db = DataBase::getInstance();
-	$projects = $db->query('SELECT * FROM project')->fetchAll();
-	$variables = $db->query('SELECT * FROM variable')->fetchAll();
-	$types = $db->query('SELECT * FROM type')->fetchAll();
-	foreach ($types as $t) {
-		$types[$t['name']] = $t;
-	}
-	
-	// Ranking
-	for ($i = 0; $i < count($projects); $i++) {
-		$projects[$i]['rank'] = rank($projects[$i], $variables, $types);
-		$projects[$i]['subrank'] = subrank($projects[$i], $variables, $types);
-	}
-	// Sorting
-	function cmp_project($a, $b) {
-		return ($a['rank'] < $b['rank']) ? 1 : -1;
-	}
-	usort($projects, 'cmp_project');
 
 	/*
 	foreach ($projects as $project) {

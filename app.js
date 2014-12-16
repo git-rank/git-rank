@@ -39,7 +39,6 @@
 	function unloading() {
 		$('#loading').fadeOut('slow');
 	}
-	unloading();
 
 	// Hover projects
 	var nb_projects_showed = 0;
@@ -62,7 +61,7 @@
 			project.attr('project_clicked', 'yes');
 			nb_projects_showed++;
 			if(nb_projects_showed == 1) {
-				$('#choose_project').hide();
+				$('#choose_project').hide('slow');
 				$('#projects h1').show('slow');
 			}
 		}
@@ -75,21 +74,42 @@
 			}
 		}
 	}
-	$('.ranking_project').mouseleave(function(e){
-		setProjectColor($(this));
-	});
-	$('.ranking_project').mouseenter(function(e){
-		setProjectColorHover($(this));
-	});
-	$('.ranking_project').click(function(e){
-		toggleClickProject($(this));
-		setProjectColorHover($(this));
-		$('#project_details_'+$(this).attr('project_id')).toggle('slow');
-	});
-	$('.remove_project').click(function(e){
-		var project;
-		toggleClickProject($(this));
-		setProjectColorHover($(this));
-		$('#project_details_'+$(this).attr('project_id')).toggle('slow');
-	})
+
+	function updateEvents() {
+		$('.ranking_project').mouseleave(function(e){
+			setProjectColor($(this));
+		});
+		$('.ranking_project').mouseenter(function(e){
+			setProjectColorHover($(this));
+		});
+		$('.ranking_project').click(function(e){
+			toggleClickProject($(this));
+			setProjectColorHover($(this));
+			$('#project_details_'+$(this).attr('project_id')).toggle('slow');
+		});
+		$('.remove_project').click(function(e){
+			var project;
+			toggleClickProject($(this));
+			setProjectColorHover($(this));
+			$('#project_details_'+$(this).attr('project_id')).toggle('slow');
+		});
+	}
+
+	function getData() {
+		loading();
+		$.ajax({
+			url: "http://127.0.0.1/dev/git-rank/git-rank/get_data.php",
+			data: "",
+			success: function(data) {
+				var div = $(document.createElement('div'));
+				div.html(data);
+				console.log(div.find('#ranking').html());
+				$('#ranking_content').html(div.find('#ranking').html());
+				$('#projects_content').html(div.find('#projects').html());
+				updateEvents();
+				unloading();
+			}
+		});
+	}
+	getData();
 })();

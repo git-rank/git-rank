@@ -1,6 +1,5 @@
 <?php
-	include_once('rank.php');
-
+	
 	function displayValue($value) {
 		$value *= 10;
 
