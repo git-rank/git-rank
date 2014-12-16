@@ -22,12 +22,17 @@
 		<h1>Ranking</h1>
 		<div id="ranking_content"></div>
 	</section>
-	<section id="projects" >
+	<section id="projects" class="page" page="1" >
 		<h1>Projects</h1>
 		<p id="choose_project" style="">Please choose any project</p>
 		<div id="projects_content"></div>
 	</section>
-
+	<section id="variator" class="page" page="2" >
+		test
+	</section>
+	<section id="variator2" class="page" page="3" >
+		test 2
+	</section>
 	<script src="jquery-2.1.1.min.js"></script>
 	<script src="app.js"></script>
 </body>

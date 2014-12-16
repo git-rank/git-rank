@@ -1,7 +1,9 @@
 (function() {
 	"use strict";
 
-	// Resize
+///////////////////////////////////////////
+// on resize
+///////////////////////////////////////////
 	function sizeLogo() {
 		var container = $('#logo');
 		var logo = $('#logo_svg');
@@ -32,7 +34,9 @@
 	onResize();
 	$(window).on('resize', onResize);
 
-	// Loader
+///////////////////////////////////////////
+// loader
+///////////////////////////////////////////
 	function loading() {
 		$('#loading').show();
 	}
@@ -40,7 +44,9 @@
 		$('#loading').fadeOut('slow');
 	}
 
-	// Hover projects
+///////////////////////////////////////////
+// projects hover
+///////////////////////////////////////////
 	var nb_projects_showed = 0;
 	function setProjectColor(project) {
 		if(project.attr('project_clicked') == 'no') {
@@ -75,6 +81,9 @@
 		}
 	}
 
+///////////////////////////////////////////
+// get data
+///////////////////////////////////////////
 	function updateEvents() {
 		$('.ranking_project').mouseleave(function(e){
 			setProjectColor($(this));
@@ -103,7 +112,6 @@
 			success: function(data) {
 				var div = $(document.createElement('div'));
 				div.html(data);
-				console.log(div.find('#ranking').html());
 				$('#ranking_content').html(div.find('#ranking').html());
 				$('#projects_content').html(div.find('#projects').html());
 				updateEvents();
@@ -112,4 +120,63 @@
 		});
 	}
 	getData();
+
+///////////////////////////////////////////
+// change screen
+///////////////////////////////////////////
+	var toPage = (function() {
+		var act_page = 1;
+		var timeouts = [];
+
+		function changeOnePage(sens, delay) {
+			if(sens == 'down')
+				var page_to = act_page + 1;
+			else if(sens == 'up')
+				var page_to = act_page - 1;
+			else
+				var page_to = act_page;
+
+			var pages = $('.page');
+			for(var i = 0; i < pages.length; i++) {
+				var $page = $(pages[i]);
+
+				var page_id = $page.attr('page');
+				var height = (page_id == page_to) ? '100%' : '0%';
+				var top = (page_id-page_to)+'00%';
+
+				console.log(i+' '+top+' '+height)
+
+				$page.animate({top: top, height: height}, delay, 'linear');
+			}
+			act_page = page_to;
+		}
+
+		return function(page_to, delay) {
+			if(delay == undefined) delay = 0;
+
+			for(var i = 0; i < timeouts.length; i++) {
+				clearTimeout(timeouts[i]);
+			}
+			timeouts = []
+
+			var diff = page_to - act_page;
+			if(diff > 0) {
+				var sens = 'down';
+			}
+			else if(diff < 0) {
+				diff *= -1;
+				var sens = 'up';
+			}
+			else {
+				changeOnePage('stay', delay);
+			}
+
+			for(var i = 0; i < diff; i++) {
+				timeouts.push(setTimeout((function(sens, delay) {
+					return function() { changeOnePage(sens, delay); }
+				})(sens, delay/diff), i*delay/diff));
+			}
+		}
+	})();
+	toPage(1);
 })();
