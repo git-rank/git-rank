@@ -27,7 +27,7 @@
 			<text x="100" y="59" font-size="30" fill="#046380" >'.$text.'</text>
 		</svg>';
 	}
-	function radarGraph($title, $labels, $values) {
+	function radarGraph($title, $labels, $values, $project_id) {
 		$n = count($values);
 		$a = 2*pi()/$n;
 		$off_a = -pi()/2;
@@ -79,13 +79,14 @@
 		}
 		$path .= 'Z';
 		$path_value .= 'Z';
-// <text class="remove_project" x="100" y="100" font-size="8" fill="#046380" text-anchor="middle" >Remove</text>
+
 		return
 		'
 		<svg class="radar_graph" viewbox="0 0 '.$w.' '.$h.'" >
 			<a xlink:href="http://www.github.com/'.$title.'" target="_blank">
 				<text x="100" y="10" font-size="10" fill="#046380" text-anchor="middle" >'.$title.'</text>
 			</a>
+			<text class="remove_project" project_id="'.$project_id.'" x="100" y="100" font-size="8" fill="#046380" text-anchor="middle" >Remove</text>
 			'.$text_values.'
 			<path d="'.$path.'" stroke="#ccc" stroke-width="1" fill="none" />
 			<path d="'.$path_value.'" stroke="#046380" stroke-width="1" fill="none" />

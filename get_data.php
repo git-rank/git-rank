@@ -46,7 +46,7 @@
 		}
 		echo
 		'<div id="project_details_'.$projects[$i]['id'].'" class="project_details" >'.
-			radarGraph($title, $labels, $values)
+			radarGraph($title, $labels, $values, $projects[$i]['id'])
 		.'<hr /></div>';
 	}
 	echo '</div>';

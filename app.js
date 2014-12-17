@@ -45,7 +45,7 @@
 	}
 
 ///////////////////////////////////////////
-// projects hover
+// projects click/hover
 ///////////////////////////////////////////
 	var nb_projects_showed = 0;
 	function setProjectColor(project) {
@@ -81,9 +81,6 @@
 		}
 	}
 
-///////////////////////////////////////////
-// get data
-///////////////////////////////////////////
 	function updateEvents() {
 		$('.ranking_project').mouseleave(function(e){
 			setProjectColor($(this));
@@ -97,13 +94,17 @@
 			$('#project_details_'+$(this).attr('project_id')).toggle('slow');
 		});
 		$('.remove_project').click(function(e){
-			var project;
-			toggleClickProject($(this));
-			setProjectColorHover($(this));
-			$('#project_details_'+$(this).attr('project_id')).toggle('slow');
+			var project = $('.ranking_project[project_id='+$(this).attr('project_id')+']');
+			toggleClickProject(project);
+			setProjectColorHover(project);
+			$('#project_details_'+project.attr('project_id')).toggle('slow');
+			setProjectColor(project);
 		});
 	}
 
+///////////////////////////////////////////
+// get data
+///////////////////////////////////////////
 	function getData() {
 		loading();
 		$.ajax({
