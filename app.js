@@ -145,8 +145,6 @@
 				var height = (page_id == page_to) ? '100%' : '0%';
 				var top = (page_id-page_to)+'00%';
 
-				console.log(i+' '+top+' '+height)
-
 				$page.animate({top: top, height: height}, delay, 'linear');
 			}
 			act_page = page_to;
