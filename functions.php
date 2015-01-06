@@ -32,10 +32,10 @@
 		$a = 2*pi()/$n;
 		$off_a = -pi()/2;
 
-		$rayon = 40;
-		$w = 420; $h = 100;
-		$cx = ($w-200)/2+200; $cy = $h/2;
-		$font_size = 10;
+		$w = 420; $h = 64;
+		$rayon = 15;
+		$cx = ($w-200)/2+190; $cy = 25+$rayon;
+		$font_size = 8;
 
 		$path = '';
 		$text_labels = '';
@@ -73,7 +73,7 @@
 
 			// Values on the left
 			$text_values .='
-			<text x="20" y="'.(25+$i*10).'" font-size="8" fill="#046380" text-anchor="start" >'.
+			<text x="50" y="'.(25+$i*10).'" font-size="'.$font_size.'" fill="#046380" text-anchor="start" >'.
 				$labels[$i].' : '.displayValue($values[$i])
 			.'</text>';
 		}
@@ -84,7 +84,7 @@
 		'
 		<svg class="radar_graph" viewbox="0 0 '.$w.' '.$h.'" >
 			<a xlink:href="http://www.github.com/'.$title.'" target="_blank">
-				<text x="100" y="10" font-size="10" fill="#046380" text-anchor="middle" >'.$title.'</text>
+				<text x="'.($w/2).'" y="10" font-size="10" fill="#046380" text-anchor="middle" >'.$title.'</text>
 			</a>
 			<text class="remove_project" project_id="'.$project_id.'" x="100" y="100" font-size="8" fill="#046380" text-anchor="middle" >Remove</text>
 			'.$text_values.'

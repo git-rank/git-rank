@@ -23,7 +23,7 @@
 		<div id="ranking_content"></div>
 	</section>
 	<section id="projects" class="page" page="1" >
-		<h1>Projects</h1>
+		<h1>Projects</h1><hr />
 		<p id="choose_project" style="">Please choose any project</p>
 		<div id="projects_content"></div>
 	</section>
