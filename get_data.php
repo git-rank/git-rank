@@ -18,7 +18,9 @@
 	for ($i = 0; $i < count($projects); $i++) {
 		$projects[$i]['rank'] = rank($projects[$i], $variables, $types);
 		$projects[$i]['subrank'] = subrank($projects[$i], $variables, $types);
+		$projects[$i]['variables'] = variablesConverted($projects[$i], $variables, $types);
 	}
+		
 	// Sorting
 	function cmp_project($a, $b) {
 		return ($a['rank'] < $b['rank']) ? 1 : -1;
@@ -40,7 +42,7 @@
 		$title =  $projects[$i]['name'];
 		$labels = array();
 		$values = array();
-		foreach ($projects[$i]['subrank'] as $label => $value) {
+		foreach ($projects[$i]['variables'] as $label => $value) {
 			array_push($labels, $label);
 			array_push($values, $value);
 		}

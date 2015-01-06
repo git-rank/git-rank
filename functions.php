@@ -32,10 +32,12 @@
 		$a = 2*pi()/$n;
 		$off_a = -pi()/2;
 
-		$w = 420; $h = 64;
-		$rayon = 15;
-		$cx = ($w-200)/2+190; $cy = 25+$rayon;
-		$font_size = 8;
+		$w = 420; $h = 150;
+		$rayon = $h/3;
+		//$cx = ($w-200)/2+190;
+		$cx = $w/2;
+		$cy = 25+$rayon;
+		$font_size = 7;
 
 		$path = '';
 		$text_labels = '';
@@ -55,11 +57,11 @@
 			$path .= 'L '.$x.' '.$y.' ';
 
 			// Labels
-			if($angle > -pi()/3 AND $angle < pi()/3) $anchor = 'start';
-			else if($angle > 2*pi()/3 AND $angle < 5*pi()/3) $anchor = 'end';
+			if($angle > -pi()/2 AND $angle <= pi()/2) $anchor = 'start';
+			else if($angle > pi()/2 AND $angle < 2*pi()) $anchor = 'end';
 			else $anchor = 'middle';
 			$text_labels .= '
-			<text x="'.($x+cos($angle)*5).'" y="'.($y+$font_size*(+sin($angle)+0.5)/1.5).'" text-anchor="'.$anchor.'"
+			<text x="'.($x+cos($angle)*5).'" y="'.($y+$font_size*(sin($angle)+0.5)/1.5).'" text-anchor="'.$anchor.'"
 			font-size="'.$font_size.'" fill="#046380" >'.$labels[$i].'</text>';
 
 			// Path data
@@ -72,10 +74,10 @@
 			$point_value .= '<circle cx="'.$x.'" cy="'.$y.'" r="1.5" fill="#046380" />';
 
 			// Values on the left
-			$text_values .='
-			<text x="50" y="'.(25+$i*10).'" font-size="'.$font_size.'" fill="#046380" text-anchor="start" >'.
+			/*$text_values .='
+			<text x="50" y="'.(25+$i*$font_size*1.2).'" font-size="'.$font_size.'" fill="#046380" text-anchor="start" >'.
 				$labels[$i].' : '.displayValue($values[$i])
-			.'</text>';
+			.'</text>';*/
 		}
 		$path .= 'Z';
 		$path_value .= 'Z';
@@ -86,7 +88,7 @@
 			<a xlink:href="http://www.github.com/'.$title.'" target="_blank">
 				<text x="'.($w/2).'" y="10" font-size="10" fill="#046380" text-anchor="middle" >'.$title.'</text>
 			</a>
-			<text class="remove_project" project_id="'.$project_id.'" x="100" y="100" font-size="8" fill="#046380" text-anchor="middle" >Remove</text>
+			<text class="remove_project" project_id="'.$project_id.'" x="16" y="'.($h/2+8).'" font-size="16" fill="#046380" text-anchor="start" >&lt;</text>
 			'.$text_values.'
 			<path d="'.$path.'" stroke="#ccc" stroke-width="1" fill="none" />
 			<path d="'.$path_value.'" stroke="#046380" stroke-width="1" fill="none" />
