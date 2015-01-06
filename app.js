@@ -143,8 +143,8 @@
 				var $page = $(pages[i]);
 
 				var page_id = $page.attr('page');
-				var height = (page_id == page_to) ? '100%' : '0%';
-				var top = (page_id-page_to)+'00%';
+				var height = (page_id == page_to) ? '95%' : '0%';
+				var top = (page_id-page_to)*95+'%';
 
 				$page.animate({top: top, height: height}, delay, 'linear');
 			}
@@ -179,10 +179,24 @@
 		}
 	})();
 	toPage(1);
-	/*setTimeout(function() {
-		toPage(2, 500);
-		setTimeout(function() {
-		toPage(1, 500);
-	},500);
-	},5000);*/
+
+	var link_clicked = false;
+	$('#link_variator').click(function() {
+		if(link_clicked) return;
+		toPage(2, 300);
+		$(this).hide();
+		$('#link_projects').show();
+
+		link_clicked = true;
+		setTimeout(function(){link_clicked = false;}, 300);
+	});
+	$('#link_projects').click(function() {
+		if(link_clicked) return;
+		toPage(1, 300);
+		$(this).hide();
+		$('#link_variator').show();
+		
+		link_clicked = true;
+		setTimeout(function(){link_clicked = false;}, 300);
+	});
 })();

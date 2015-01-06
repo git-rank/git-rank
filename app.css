@@ -121,3 +121,16 @@ section {
 	}
 #variator {
 }
+#links {
+	overflow: hidden;
+	width: 70%;
+	height: 5%;
+	top: 95%;
+	left: 30%;
+	background-color: #046380;
+	text-align: center;
+}
+	#links svg {
+		cursor: pointer;
+		height: 100%;
+	}
