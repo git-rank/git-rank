@@ -60,8 +60,8 @@
 			if($angle > -pi()/2 AND $angle <= pi()/2) $anchor = 'start';
 			else if($angle > pi()/2 AND $angle < 2*pi()) $anchor = 'end';
 			else $anchor = 'middle';
-			$text_labels .= '
-			<text x="'.($x+cos($angle)*5).'" y="'.($y+$font_size*(sin($angle)+0.5)/1.5).'" text-anchor="'.$anchor.'"
+			$text_labels .= pow(sin($angle),2).'
+			<text x="'.($x+cos($angle)*8).'" y="'.($y+$font_size*(sin($angle)*pow(sin($angle),20)+1/2)).'" text-anchor="'.$anchor.'"
 			font-size="'.$font_size.'" fill="#046380" >'.$labels[$i].'</text>';
 
 			// Path data
