@@ -28,7 +28,7 @@
 		<div id="projects_content"></div>
 	</section>
 	<section id="variator" class="page" page="2" >
-		test
+		<h1>Variator</h1><hr />
 	</section>
 	<section id="links" >
 		<svg id="link_variator" viewbox="0 0 50 5" >
