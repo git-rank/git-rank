@@ -27,7 +27,7 @@
 			<text x="100" y="59" font-size="30" fill="#046380" >'.$text.'</text>
 		</svg>';
 	}
-	function radarGraph($title, $labels, $values, $project_id) {
+	function radarGraph($title, $labels, $values, $project_id, $project_rank) {
 		$n = count($values);
 		$a = 2*pi()/$n;
 		$off_a = -pi()/2;
@@ -36,7 +36,7 @@
 		$rayon = $h/3;
 		//$cx = ($w-200)/2+190;
 		$cx = $w/2;
-		$cy = 25+$rayon;
+		$cy = 30+$rayon;
 		$font_size = 7;
 
 		$path = '';
@@ -57,7 +57,7 @@
 			$path .= 'L '.$x.' '.$y.' ';
 
 			// Labels
-			if($angle > -pi()/2 AND $angle <= pi()/2) $anchor = 'start';
+			if($angle > -pi()/2 AND $angle < pi()/2) $anchor = 'start';
 			else if($angle > pi()/2 AND $angle < 2*pi()) $anchor = 'end';
 			else $anchor = 'middle';
 			$text_labels .= pow(sin($angle),2).'
@@ -86,7 +86,7 @@
 		'
 		<svg class="radar_graph" viewbox="0 0 '.$w.' '.$h.'" >
 			<a xlink:href="http://www.github.com/'.$title.'" target="_blank">
-				<text x="'.($w/2).'" y="10" font-size="10" fill="#046380" text-anchor="middle" >'.$title.'</text>
+				<text x="'.($w/2).'" y="10" font-size="12" fill="#046380" text-anchor="middle" >'.$title.' ('.displayValue($project_rank).')</text>
 			</a>
 			<text class="remove_project" project_id="'.$project_id.'" x="16" y="'.($h/2+8).'" font-size="16" fill="#046380" text-anchor="start" >&lt;</text>
 			'.$text_values.'

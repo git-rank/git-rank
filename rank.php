@@ -68,10 +68,10 @@
 		// Computing rank
 		$variables_converted = array();
 		foreach ($variables as $variable) {
-			//if($variable['coeff'] > 0 AND 0) {
+			if($variable['coeff'] > 0) {
 			$value = convertToRank($variable['type'], $project['variable_'.$variable['id']], $types);
 			$variables_converted[$variable['category'].' - '.$variable['name'].' ('.displayValue($value).')'] = $value;
-		//}
+			}
 		}
 		return $variables_converted;
 	}

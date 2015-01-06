@@ -17,7 +17,7 @@
 	// Ranking
 	for ($i = 0; $i < count($projects); $i++) {
 		$projects[$i]['rank'] = rank($projects[$i], $variables, $types);
-		$projects[$i]['subrank'] = subrank($projects[$i], $variables, $types);
+		//$projects[$i]['subrank'] = subrank($projects[$i], $variables, $types);
 		$projects[$i]['variables'] = variablesConverted($projects[$i], $variables, $types);
 	}
 		
@@ -46,9 +46,10 @@
 			array_push($labels, $label);
 			array_push($values, $value);
 		}
+
 		echo
 		'<div id="project_details_'.$projects[$i]['id'].'" class="project_details" >'.
-			radarGraph($title, $labels, $values, $projects[$i]['id'])
+			radarGraph($title, $labels, $values, $projects[$i]['id'], $projects[$i]['rank'])
 		.'<hr /></div>';
 	}
 	echo '</div>';
