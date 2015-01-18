@@ -55,7 +55,7 @@
 	echo '</div>';
 
 	echo '<div id="variables">
-			<h2><a>Generate new rank</a></h2>
+			<h2 class="generate_rank" ><a>Generate new rank</a></h2>
 	';
 
 		foreach ($variables as $v) {
@@ -65,6 +65,7 @@
 			echo '</p>';
 		}
 	echo '
-			<h2><a>Generate new rank</a></h2>
+			<h2 class="generate_rank" ><a>Generate new rank</a></h2>
+			<br/>
 		</div>';
 ?>

@@ -32,11 +32,11 @@
 		<div id="variables_content"></div>
 	</section>
 	<section id="links" >
-		<svg id="link_variator" viewbox="0 0 50 5" >
-			<text x="25" y="4" font-size="4" fill="#fff" text-anchor="middle" >Variator</text>
+		<svg id="link_variator" viewbox="0 0 120 5" >
+			<text x="60" y="4" font-size="4" fill="#fff" text-anchor="middle" >Variator</text>
 		</svg>
-		<svg id="link_projects" style="display:none;" viewbox="0 0 50 5" >
-			<text x="25" y="4" font-size="4" fill="#fff" text-anchor="middle" >Projects</text>
+		<svg id="link_projects" style="display:none;" viewbox="0 0 120 5" >
+			<text x="60" y="4" font-size="4" fill="#fff" text-anchor="middle" >Projects</text>
 		</svg>
 	</section>
 	<script src="jquery-2.1.1.min.js"></script>
