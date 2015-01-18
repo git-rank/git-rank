@@ -10,10 +10,14 @@
 		$types[$t['name']] = $t;
 	}
 
-	$variables = @$_POST['variables'];
-	if(empty($variables))
-		$variables = $db->query('SELECT * FROM variable')->fetchAll();
-	
+	$variables = $db->query('SELECT * FROM variable')->fetchAll();
+
+	for ($i = 0; $i < count($variables); $i++) {
+		$coeff = @$_POST['variable_'.$variables[$i]['id']];
+		if($coeff)
+			$variables[$i]['coeff'] = floatval($coeff);
+	}
+
 	// Ranking
 	for ($i = 0; $i < count($projects); $i++) {
 		$projects[$i]['rank'] = rank($projects[$i], $variables, $types);
@@ -60,7 +64,7 @@
 
 		foreach ($variables as $v) {
 			echo '<p>';
-				echo '<input id="variator_variable_'.$v['id'].'" type="text" value="'.$v['coeff'].'" />';
+				echo '<input class="variator_variable" variable_id="'.$v['id'].'" type="text" value="'.$v['coeff'].'" />';
 				echo $v['category'].' - '.$v['name'];
 			echo '</p>';
 		}
@@ -68,4 +72,17 @@
 			<h2 class="generate_rank" ><a>Generate new rank</a></h2>
 			<br/>
 		</div>';
+
+	/*echo '<div id="post">';
+	var_dump($_POST);
+	for ($i = 0; $i < count($variables); $i++) {
+			echo '<p>';
+				
+		
+				
+				echo $variables[$i]['coeff'];
+
+			echo '</p>';
+		}
+	echo '</div>';*/
 ?>

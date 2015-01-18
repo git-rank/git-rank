@@ -100,6 +100,9 @@
 			$('#project_details_'+project.attr('project_id')).toggle('slow');
 			setProjectColor(project);
 		});
+		$("#variator .generate_rank").click(function(){
+			getData();
+		});
 	}
 
 ///////////////////////////////////////////
@@ -107,9 +110,17 @@
 ///////////////////////////////////////////
 	function getData() {
 		loading();
+
+		var data = {};
+		$.each($('.variator_variable'), function(key, v){
+			var $v = $(v);
+			data['variable_'+$v.attr('variable_id')] = $v.val();
+		});
+
 		$.ajax({
 			url: "get_data.php",
-			data: "",
+			type: "post",
+			data: data,
 			success: function(data) {
 				var div = $(document.createElement('div'));
 				div.html(data);
@@ -122,13 +133,6 @@
 		});
 	}
 	getData();
-
-///////////////////////////////////////////
-// Variator
-///////////////////////////////////////////
-	$("#variator .generate_rank").click(function(){
-		getData();
-	});
 
 ///////////////////////////////////////////
 // change screen
