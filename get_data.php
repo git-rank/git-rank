@@ -53,4 +53,18 @@
 		.'<hr /></div>';
 	}
 	echo '</div>';
+
+	echo '<div id="variables">
+			<h2><a>Generate new rank</a></h2>
+	';
+
+		foreach ($variables as $v) {
+			echo '<p>';
+				echo '<input id="variator_variable_'.$v['id'].'" type="text" value="'.$v['coeff'].'" />';
+				echo $v['category'].' - '.$v['name'];
+			echo '</p>';
+		}
+	echo '
+			<h2><a>Generate new rank</a></h2>
+		</div>';
 ?>

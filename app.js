@@ -108,14 +108,14 @@
 	function getData() {
 		loading();
 		$.ajax({
-			url: "http://127.0.0.1/dev/git-rank/git-rank/get_data.php",
-			// url: "http://git-rank.net/app/get_data.php",
+			url: "get_data.php",
 			data: "",
 			success: function(data) {
 				var div = $(document.createElement('div'));
 				div.html(data);
 				$('#ranking_content').html(div.find('#ranking').html());
 				$('#projects_content').html(div.find('#projects').html());
+				$('#variables_content').html(div.find('#variables').html());
 				updateEvents();
 				unloading();
 			}
@@ -195,7 +195,7 @@
 		toPage(1, 300);
 		$(this).hide();
 		$('#link_variator').show();
-		
+
 		link_clicked = true;
 		setTimeout(function(){link_clicked = false;}, 300);
 	});

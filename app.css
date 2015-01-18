@@ -121,6 +121,30 @@ section {
 	}
 #variator {
 }
+	#variator #variables_content p {
+		padding: 10px 0 10px 20px;
+		font-size: 20px;
+	}
+	#variator #variables_content input {
+		display: inline-block;
+		width: 20%;
+		margin-right: 20px;
+		position: relative;
+		top: -2px;
+		font-size: 20px;
+		padding: 5px;
+	}
+	#variator #variables_content h2 {
+		text-align: center;
+		margin: 20px;
+		cursor: pointer;
+		border: 1px solid #046380;
+	}
+	#variator #variables_content h2:hover {
+		background-color: #046380;
+		color: #fff;
+	}
+
 #links {
 	overflow: hidden;
 	width: 70%;
