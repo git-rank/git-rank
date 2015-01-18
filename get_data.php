@@ -41,7 +41,8 @@
 	}
 	echo '</div>';
 
-	echo '<div id="projects">';
+	echo '<div id="projects">
+	';
 	for ($i = 0; $i < count($projects); $i++) {
 		$title =  $projects[$i]['name'];
 		$labels = array();
@@ -72,17 +73,4 @@
 			<h2 class="generate_rank" ><a>Generate new rank</a></h2>
 			<br/>
 		</div>';
-
-	/*echo '<div id="post">';
-	var_dump($_POST);
-	for ($i = 0; $i < count($variables); $i++) {
-			echo '<p>';
-				
-		
-				
-				echo $variables[$i]['coeff'];
-
-			echo '</p>';
-		}
-	echo '</div>';*/
 ?>

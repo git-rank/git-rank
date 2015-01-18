@@ -88,19 +88,19 @@
 		$('.ranking_project').mouseenter(function(e){
 			setProjectColorHover($(this));
 		});
-		$('.ranking_project').click(function(e){
+		$('.ranking_project').on("click", function(e){
 			toggleClickProject($(this));
 			setProjectColorHover($(this));
 			$('#project_details_'+$(this).attr('project_id')).toggle('slow');
 		});
-		$('.remove_project').click(function(e){
+		$('.remove_project').on("click", function(e){
 			var project = $('.ranking_project[project_id='+$(this).attr('project_id')+']');
 			toggleClickProject(project);
 			setProjectColorHover(project);
 			$('#project_details_'+project.attr('project_id')).toggle('slow');
 			setProjectColor(project);
 		});
-		$("#variator .generate_rank").click(function(){
+		$("#variator .generate_rank").on("click", function(){
 			getData();
 		});
 	}
@@ -124,10 +124,12 @@
 			success: function(data) {
 				var div = $(document.createElement('div'));
 				div.html(data);
+
 				$('#ranking_content').html(div.find('#ranking').html());
 				$('#projects_content').html(div.find('#projects').html());
 				$('#variables_content').html(div.find('#variables').html());
 				updateEvents();
+				$('#choose_project').show('slow');
 				unloading();
 			}
 		});
